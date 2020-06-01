@@ -1,0 +1,15 @@
+version: '2'
+services:
+  database:
+    image: mysql:5.7
+    volumes:
+      - db_data:/home/song/Documents/Work/tiktok/tiklikes/db
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=lapis
+      - MYSQL_DATABASE=lapis
+      - MYSQL_USER=lapis
+      - MYSQL_PASSWORD=lapis
+volumes:
+  db_data: {}

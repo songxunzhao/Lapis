@@ -49,21 +49,16 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a class="active" href="resources/views/index.blade.php">home</a></li>
-                                        <li><a href="Courses.html">Courses</a></li>
-                                        <li><a href="#">pages <i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                <li><a href="course_details.html">course details</a></li>
-                                                <li><a href="elements.html">elements</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="about.html">About</a></li>
+                                        <li><a class="active" href="{{route('home')}}">home</a></li>
+                                        <li><a href="{{route('courses')}}">Courses</a></li>
                                         <li><a href="#">blog <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
                                                 <li><a href="blog.html">blog</a></li>
                                                 <li><a href="single-blog.html">single-blog</a></li>
                                             </ul>
                                         </li>
+                                        <li><a href="about.html">About</a></li>
+
                                         <li><a href="contact.html">Contact</a></li>
                                     </ul>
                                 </nav>
@@ -71,16 +66,28 @@
                         </div>
                         <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                             <div class="log_chat_area d-flex align-items-center">
-                                <a href="#test-form" class="login popup-with-form">
-                                    <i class="flaticon-user"></i>
-                                    <span>log in</span>
-                                </a>
+                                @auth
+                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}</a>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
+                                    </div>
+                                @endauth
+
+                                @guest
+                                    <a href="#test-form" class="login popup-with-form">
+                                        <i class="flaticon-user"></i>
+                                        <span>log in</span>
+                                    </a>
+                                @endguest
+
+                                <!--
                                 <div class="live_chat_btn">
                                     <a class="boxed_btn_orange" href="#">
                                         <i class="fa fa-phone"></i>
                                         <span>+10 378 467 3672</span>
                                     </a>
                                 </div>
+                                -->
                             </div>
                         </div>
                         <div class="col-12">
@@ -2012,7 +2019,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 
     <!-- form itself end-->
-    <form id="test-form" class="white-popup-block mfp-hide">
+    <form id="test-form" action="{{route('login')}}" method="post" class="white-popup-block mfp-hide">
         <div class="popup_box ">
             <div class="popup_inner">
                 <div class="logo text-center">
@@ -2021,18 +2028,21 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     </a>
                 </div>
                 <h3>Sign in</h3>
-                <form action="#">
+                <form>
                     <div class="row">
                         <div class="col-xl-12 col-md-12">
-                            <input type="email" placeholder="Enter email">
+                            <label class="input-error" id="login-form-email-error"></label>
+                            <input type="email" name="email" placeholder="Enter email">
                         </div>
                         <div class="col-xl-12 col-md-12">
-                            <input type="password" placeholder="Password">
+                            <label class="input-error" id="login-form-password-error"></label>
+                            <input type="password" name="password" placeholder="Password">
                         </div>
                         <div class="col-xl-12">
                             <button type="submit" class="boxed_btn_orange">Sign in</button>
                         </div>
                     </div>
+                    {{ csrf_field() }}
                 </form>
                 <p class="doen_have_acc">Don’t have an account? <a class="dont-hav-acc" href="#test-form2">Sign Up</a>
                 </p>
@@ -2042,7 +2052,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- form itself end -->
 
     <!-- form itself end-->
-    <form id="test-form2" class="white-popup-block mfp-hide">
+    <form id="test-form2" action="{{route('register')}}" method="post" class="white-popup-block mfp-hide">
         <div class="popup_box ">
             <div class="popup_inner">
                 <div class="logo text-center">
@@ -2051,20 +2061,28 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                     </a>
                 </div>
                 <h3>Resistration</h3>
-                <form action="#">
+                <form>
                     <div class="row">
                         <div class="col-xl-12 col-md-12">
-                            <input type="email" placeholder="Enter email">
+                            <label class="input-error" id="signup-form-name-error"></label>
+                            <input type="text" name="name" placeholder="Enter name">
                         </div>
                         <div class="col-xl-12 col-md-12">
-                            <input type="password" placeholder="Password">
+                            <label class="input-error" id="signup-form-email-error"></label>
+                            <input type="email" name="email" placeholder="Enter email">
                         </div>
                         <div class="col-xl-12 col-md-12">
-                            <input type="Password" placeholder="Confirm password">
+                            <label class="input-error" id="signup-form-password-error"></label>
+                            <input type="password" name="password" placeholder="Password">
+                        </div>
+                        <div class="col-xl-12 col-md-12">
+                            <label class="input-error" id="signup-form-confirm-error"></label>
+                            <input type="password" name="password_confirmation" placeholder="Confirm password">
                         </div>
                         <div class="col-xl-12">
                             <button type="submit" class="boxed_btn_orange">Sign Up</button>
                         </div>
+                        {{ csrf_field() }}
                     </div>
                 </form>
             </div>
@@ -2076,6 +2094,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <!-- JS here -->
     <script src="js/vendor/modernizr-3.5.0.min.js"></script>
     <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="js/vendor/validate.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
