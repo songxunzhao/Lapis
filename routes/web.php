@@ -25,3 +25,9 @@ Route::namespace('Course')->prefix('course/')->group(function () {
 Route::namespace('Blog')->prefix('blog/')->group(function() {
     Route::get('/', 'BlogController@all')->name('blogs');
 });
+
+Route::namespace('Admin')->prefix('admin')->group(function () {
+    Route::namespace('Dashboard')->prefix('dashboard')->group(function () {
+        Route::get('/', 'DashboardController@index')->name('admin/dashboard');
+    });
+});

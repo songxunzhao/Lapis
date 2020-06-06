@@ -50,6 +50,10 @@
                                 <nav>
                                     <ul id="navigation">
                                         <li><a class="active" href="{{route('home')}}">home</a></li>
+                                        @isadmin
+                                            <li><a href="{{route('admin/dashboard')}}">admin</a></li>
+                                        @endisadmin
+
                                         <li><a href="{{route('courses')}}">Courses</a></li>
                                         <li><a href="#">blog <i class="ti-angle-down"></i></a>
                                             <ul class="submenu">
