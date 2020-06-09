@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Http\Controllers\Auth\UserLevel;
+use App\Models\UserLevel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;

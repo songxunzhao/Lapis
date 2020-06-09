@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use MyCLabs\Enum\Enum;
 
 class User extends Authenticatable
 {
@@ -27,12 +26,4 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-}
-
-class UserLevel extends Enum
-{
-    const NORMAL='NORMAL';
-    const CONTENT_EDITOR='CONTENT_EDITOR';
-    const CONTENT_INSPECTOR='CONTENT_INSPECTOR';
-    const ADMIN='ADMIN';
 }

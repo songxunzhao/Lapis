@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use App\Models\PeriodUnit;
 
-class CreateUserPlansTable extends Migration
+class CreatePayPlansTable extends Migration
 {
     /**
      * Run the migrations.

@@ -30,4 +30,17 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
     Route::namespace('Dashboard')->prefix('dashboard')->group(function () {
         Route::get('/', 'DashboardController@index')->name('admin/dashboard');
     });
+    Route::namespace('Courses')->prefix('courses')->group(function() {
+        Route::get('/', 'CoursesController@index')->name('admin/courses');
+    });
+    Route::namespace('Blogs')->prefix('blogs')->group(function() {
+        Route::get('/', 'BlogsController@index')->name('admin/blogs');
+    });
+    Route::namespace('Tags')->prefix('tags')->group(function() {
+        Route::get('/', 'TagsController@index')->name('admin/tags');
+    });
+    Route::namespace('Transactions')->prefix('transactions')->group(function() {
+        Route::get('/', 'TransactionsController@index')->name('admin/transactions');
+    });
+
 });

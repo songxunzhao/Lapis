@@ -4,9 +4,12 @@
 namespace App\Http\Controllers\Admin\Dashboard;
 
 
-use App\Blog;
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use App\Models\Course;
+use App\Models\Tag;
+use App\Models\Transaction;
+use App\Models\TransactionStatus;
 use App\Models\User;
 
 class DashboardController extends Controller
@@ -22,6 +25,8 @@ class DashboardController extends Controller
 
         $total_courses = Course::count();
         $total_blogs = Blog::count();
+        $total_tags = Tag::count();
+        $payment = Transaction::where('status', TransactionStatus::PAID)->sum('value');
 
         return view('admin/dashboard/index', [
             'admin_count' => $admin_count,
@@ -30,7 +35,9 @@ class DashboardController extends Controller
             'free_user_count' => $free_user_count,
             'premium_user_count' => $premium_user_count,
             'total_courses' => $total_courses,
-            'total_blogs' => $total_blogs
+            'total_blogs' => $total_blogs,
+            'total_tags' => $total_tags,
+            'total_payment' => $payment
         ]);
     }
 }
