@@ -14,6 +14,11 @@ use App\Models\User;
 
 class DashboardController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('manager');
+    }
+
     public function index() {
 
         $admin_count = User::where('user_level', 'ADMIN')->where('is_active', true)->count();
@@ -28,7 +33,7 @@ class DashboardController extends Controller
         $total_tags = Tag::count();
         $payment = Transaction::where('status', TransactionStatus::PAID)->sum('value');
 
-        return view('admin/dashboard/index', [
+        return view('admin.dashboard.index', [
             'admin_count' => $admin_count,
             'content_inspector_count' => $content_inspector_count,
             'content_editor_count' => $content_editor_count,

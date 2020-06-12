@@ -22,7 +22,6 @@ class CreateUsersTable extends Migration
             $table->boolean('is_active')->default(false);
             $table->integer('user_plan')->default(1);
             $table->string('user_level')->default(UserLevel::NORMAL);
-            $table->string('tags', 2047);
 
             $table->rememberToken();
             $table->timestamps();

@@ -17,11 +17,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Blade::if('isrole', function (UserLevel $role) {
-            Auth::check() && Auth::user()->user_level == $role;
+            return Auth::check() && Auth::user()->user_level == $role;
         });
 
         Blade::if('isadmin', function () {
-            Auth::check() && Auth::user()->user_level != UserLevel::NORMAL;
+            return Auth::check() && Auth::user()->user_level != UserLevel::NORMAL;
         });
 
         Blade::if('canhandletag', function($tag) {

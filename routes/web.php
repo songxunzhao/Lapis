@@ -32,9 +32,13 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
     });
     Route::namespace('Courses')->prefix('courses')->group(function() {
         Route::get('/', 'CoursesController@index')->name('admin/courses');
+        Route::post('/create', 'CoursesController@create')->name('admin/courses/create');
+        Route::post('/update', 'CoursesController@update')->name('admin/courses/update');
     });
     Route::namespace('Blogs')->prefix('blogs')->group(function() {
         Route::get('/', 'BlogsController@index')->name('admin/blogs');
+        Route::post('/create', 'BlogsController@create')->name('admin/blogs/create');
+        Route::post('/update', 'BlogsController@update')->name('admin/blogs/update');
     });
     Route::namespace('Tags')->prefix('tags')->group(function() {
         Route::get('/', 'TagsController@index')->name('admin/tags');
@@ -43,4 +47,8 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
         Route::get('/', 'TransactionsController@index')->name('admin/transactions');
     });
 
+    Route::namespace('Users')->prefix('users')->group(function () {
+        Route::get('/', 'UsersController@index')->name('admin/users');
+        Route::get('/{id}/activate', 'UsersController@activate')->name('admin/users/activate');
+    });
 });
