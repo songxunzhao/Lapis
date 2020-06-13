@@ -6,8 +6,10 @@ namespace App\Http\Controllers\Admin\Blogs;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
+use App\Models\ContentStatus;
 use App\Models\Course;
 use App\Models\UserLevel;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class BlogsController extends Controller
@@ -30,9 +32,30 @@ class BlogsController extends Controller
         return view('admin.blogs.index', ['blogs' => $blogs]);
     }
 
-    public function create() {
-        $blog = new Blog();
-        $blog->save();
+    public function create(Request $request) {
+        $validated_data = $request->validate([
+            'name'=> 'required',
+            'description' => 'nullable',
+            'thumbnail_url' => 'required',
+            'content_path' => 'required',
+            'is_premium' => 'boolean|required',
+            'status' => ContentStatus::DRAFT
+        ]);
+        $blog = Blog::create($validated_data);
+        return $blog->toArray();
+    }
+
+    public function update(Request $request, $id) {
+        $validated_data = $request->validate([
+            'name'=> 'required',
+            'description' => 'nullable',
+            'thumbnail_url' => 'required',
+            'content_path' => 'required',
+            'is_premium' => 'boolean|required',
+            'status' => ContentStatus::DRAFT
+        ]);
+        $blog = Blog::where('id', $id)->update($validated_data);
+        return $blog->toArray();
     }
 
     public function __construct()

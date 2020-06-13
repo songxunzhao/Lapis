@@ -20,6 +20,8 @@ class CreateBlogsTable extends Migration
             $table->string('thumbnail_url');
             $table->string('content_path');
             $table->boolean('is_premium');
+            $table->integer('user_id');
+            $table->string('status');
             $table->timestamps();
         });
     }

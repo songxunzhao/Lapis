@@ -32,16 +32,18 @@ Route::middleware(['auth', 'manager'])->namespace('Admin')->prefix('admin')->gro
     });
     Route::namespace('Courses')->prefix('courses')->group(function() {
         Route::get('/', 'CoursesController@index')->name('admin/courses');
-        Route::post('/create', 'CoursesController@create')->name('admin/courses/create');
-        Route::post('/update', 'CoursesController@update')->name('admin/courses/update');
+        Route::post('/', 'CoursesController@create')->name('admin/courses/create');
+        Route::put('/', 'CoursesController@update')->name('admin/courses/update');
     });
     Route::namespace('Blogs')->prefix('blogs')->group(function() {
         Route::get('/', 'BlogsController@index')->name('admin/blogs');
-        Route::post('/create', 'BlogsController@create')->name('admin/blogs/create');
-        Route::post('/update', 'BlogsController@update')->name('admin/blogs/update');
+        Route::post('/', 'BlogsController@create')->name('admin/blogs');
+        Route::put('/', 'BlogsController@update')->name('admin/blogs');
     });
     Route::namespace('Tags')->prefix('tags')->group(function() {
         Route::get('/', 'TagsController@index')->name('admin/tags');
+        Route::post('/', 'TagsController@create')->name('admin/tags/create');
+        Route::put('/', 'TagsController@update')->name('admin/tags/update');
     });
     Route::namespace('Transactions')->prefix('transactions')->group(function() {
         Route::get('/', 'TransactionsController@index')->name('admin/transactions');
