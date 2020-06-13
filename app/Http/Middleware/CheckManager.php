@@ -16,7 +16,7 @@ class CheckManager
      */
     public function handle($request, Closure $next)
     {
-        if(!$request->user()->user_level == UserLevel::NORMAL) {
+        if($request->user()->user_level == UserLevel::NORMAL) {
             return redirect(route('home'));
         }
         return $next($request);

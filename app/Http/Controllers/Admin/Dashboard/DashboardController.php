@@ -11,19 +11,19 @@ use App\Models\Tag;
 use App\Models\Transaction;
 use App\Models\TransactionStatus;
 use App\Models\User;
+use App\Models\UserLevel;
 
 class DashboardController extends Controller
 {
     public function __construct()
     {
-//        $this->middleware('manager');
     }
 
     public function index() {
 
-        $admin_count = User::where('user_level', 'ADMIN')->where('is_active', true)->count();
-        $content_inspector_count = User::where('user_level', 'CONTENT_INSPECTOR')->where('is_active', true)->count();
-        $content_editor_count = User::where('user_level', 'CONTENT_EDITOR')->where('is_active', true)->count();
+        $admin_count = User::where('user_level', UserLevel::ADMIN)->where('is_active', true)->count();
+        $content_inspector_count = User::where('user_level', UserLevel::CONTENT_INSPECTOR)->where('is_active', true)->count();
+        $content_editor_count = User::where('user_level', UserLevel::CONTENT_EDITOR)->where('is_active', true)->count();
 
         $free_user_count = User::where('user_plan', 1)->where('is_active', true)->count();
         $premium_user_count = User::where('user_plan', 2)->where('is_active', true)->count();

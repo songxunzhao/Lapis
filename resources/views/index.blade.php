@@ -9,7 +9,7 @@
                         <div class="col-xl-2 col-lg-2">
                             <div class="logo-img">
                                 <a href="resources/views/index.blade.php">
-                                    <img src="img/logo.png" alt="">
+                                    <img src="/img/logo.png" alt="">
                                 </a>
                             </div>
                         </div>

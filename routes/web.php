@@ -26,7 +26,7 @@ Route::namespace('Blog')->prefix('blog/')->group(function() {
     Route::get('/', 'BlogController@all')->name('blogs');
 });
 
-Route::namespace('Admin')->prefix('admin')->group(function () {
+Route::middleware(['auth', 'manager'])->namespace('Admin')->prefix('admin')->group(function () {
     Route::namespace('Dashboard')->prefix('dashboard')->group(function () {
         Route::get('/', 'DashboardController@index')->name('admin/dashboard');
     });

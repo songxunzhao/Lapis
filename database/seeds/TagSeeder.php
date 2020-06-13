@@ -15,11 +15,13 @@ class TagSeeder extends Seeder
         DB::table('tags')->insert([
             [
                 'name' => 'Adobe Photoshop',
-                'description' => 'Adobe Photoshop'
+                'description' => 'Adobe Photoshop',
+                'is_active' => true
             ],
             [
                 'name' => 'Maya',
-                'description' => 'Maya'
+                'description' => 'Maya',
+                'is_active' => true
             ]
         ]);
     }
