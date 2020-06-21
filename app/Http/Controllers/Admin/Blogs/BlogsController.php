@@ -33,16 +33,22 @@ class BlogsController extends Controller
     }
 
     public function create(Request $request) {
-        $validated_data = $request->validate([
-            'name'=> 'required',
-            'description' => 'nullable',
-            'thumbnail_url' => 'required',
-            'content_path' => 'required',
-            'is_premium' => 'boolean|required',
-            'status' => ContentStatus::DRAFT
-        ]);
-        $blog = Blog::create($validated_data);
-        return $blog->toArray();
+        if(!$request->isMethod('post')) {
+            return view('admin.blogs.create');
+        } else {
+            $validated_data = $request->validate([
+                'name'=> 'required',
+                'description' => 'nullable',
+                'thumbnail_url' => 'required',
+                'content_path' => 'required',
+                'is_premium' => 'boolean|required',
+                'status' => ContentStatus::DRAFT
+            ]);
+
+            Blog::create($validated_data);
+
+            return redirect(route('admin/blogs'));
+        }
     }
 
     public function update(Request $request, $id) {
