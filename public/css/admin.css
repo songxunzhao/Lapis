@@ -60,3 +60,35 @@
     display: none;
     opacity: 0;
 }
+
+/* --- Blog page --- */
+.blog-avatar {
+    display: inline-block;
+    width: 100px;
+    height: 150px;
+    vertical-align: top;
+}
+
+.blog-avatar img {
+    width: 100%;
+    height: 100%;
+}
+
+.blog-title {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.blog-content {
+    margin-left: 25px;
+    display: inline-block;
+    width: calc(100% - 140px);
+    color: #3F3F3F;
+    font-size: 14px;
+}
+.blog-content .blog-description {
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+    text-overflow: ellipsis;
+}

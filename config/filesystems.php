@@ -40,6 +40,9 @@ return [
     | Supported Drivers: "local", "ftp", "s3", "rackspace"
     |
     */
+    'links' => [
+        public_path('storage') => storage_path('app/public'),
+    ],
 
     'disks' => [
 

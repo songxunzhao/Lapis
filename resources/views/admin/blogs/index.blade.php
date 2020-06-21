@@ -28,3 +28,9 @@
         @endif
     </div>
 @endsection
+
+@section('jsimport')
+    @parent
+    <script src="/js/pages/admin.blogs.js"></script>
+
+@endsection

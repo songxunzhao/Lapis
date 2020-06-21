@@ -12,6 +12,6 @@ class Course extends Model
     }
 
     public function tag() {
-        return $this->belongTo('App\Models\Tag');
+        return $this->belongsTo('App\Models\Tag');
     }
 }

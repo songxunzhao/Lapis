@@ -39,7 +39,9 @@ Route::middleware(['auth', 'manager'])->namespace('Admin')->prefix('admin')->gro
         Route::get('/', 'BlogsController@index')->name('admin/blogs');
         Route::get('/create', 'BlogsController@create')->name('admin/blogs/create');
         Route::post('/create', 'BlogsController@create')->name('admin/blogs/create');
-        Route::get('/{id}', 'BlogsController@update')->name('admin/blogs/update');
+        Route::get('/{id}/publish', 'BlogsController@publish')->name('admin/blogs/publish');
+        Route::get('/{id}/update', 'BlogsController@update')->name('admin/blogs/update');
+        Route::post('/{id}/update', 'BlogsController@update')->name('admin/blogs/update');
     });
     Route::namespace('Tags')->prefix('tags')->group(function() {
         Route::get('/', 'TagsController@index')->name('admin/tags');
