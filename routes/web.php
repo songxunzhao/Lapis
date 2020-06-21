@@ -51,6 +51,6 @@ Route::middleware(['auth', 'manager'])->namespace('Admin')->prefix('admin')->gro
 
     Route::namespace('Users')->prefix('users')->group(function () {
         Route::get('/', 'UsersController@index')->name('admin/users');
-        Route::get('/{id}/activate', 'UsersController@activate')->name('admin/users/activate');
+        Route::post('/{id}/update', 'UsersController@update')->name('admin/users/update');
     });
 });

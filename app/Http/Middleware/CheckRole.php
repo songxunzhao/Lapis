@@ -15,9 +15,9 @@ class CheckRole
      * @param UserLevel $role
      * @return mixed
      */
-    public function handle($request, Closure $next, UserLevel $role)
+    public function handle($request, Closure $next, $role)
     {
-        if(!$request->user()->user_level != $role) {
+        if($request->user()->user_level != $role) {
             return redirect('home');
         }
         return $next($request);
