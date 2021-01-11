@@ -2001,6 +2001,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                 </div>
                 <h3>Sign in</h3>
                 <form>
+                  {{csrf_field()}}
                     <div class="row">
                         <div class="col-xl-12 col-md-12">
                             <label class="input-error" id="login-form-email-error"></label>
@@ -2014,7 +2015,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                             <button type="submit" class="boxed_btn_orange">Sign in</button>
                         </div>
                     </div>
-                    {{ csrf_field() }}
                 </form>
                 <p class="doen_have_acc">Don’t have an account? <a class="dont-hav-acc" href="#test-form2">Sign Up</a>
                 </p>
@@ -2025,6 +2025,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
     <!-- form itself end-->
     <form id="test-form2" action="{{route('register')}}" method="post" class="white-popup-block mfp-hide">
+        {{csrf_field()}}
         <div class="popup_box ">
             <div class="popup_inner">
                 <div class="logo text-center">
@@ -2054,7 +2055,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                         <div class="col-xl-12">
                             <button type="submit" class="boxed_btn_orange">Sign Up</button>
                         </div>
-                        {{ csrf_field() }}
+
                     </div>
                 </form>
             </div>
